@@ -4,9 +4,15 @@ import base64
 import requests
 import time
 import threading
+import os
 from win10toast import ToastNotifier
 
-API_KEY = "AIzaSyBuL5PZMjx1iHhCRo8fcqQy7AVIpqHlbQo"
+API_KEY = os.getenv("GEMINI_API_KEY", "")
+if not API_KEY:
+    print("ERROR: GEMINI_API_KEY environment variable not set")
+    print("Set it with: set GEMINI_API_KEY=your_api_key_here")
+    exit(1)
+
 MODEL = "gemini-2.0-flash"
 
 def screenshot_to_base64():

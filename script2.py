@@ -21,7 +21,12 @@ except Exception:
     OCR_AVAILABLE = False
 
 # ----------------- USER CONFIG -----------------
-GOOGLE_API_KEY = "AIzaSyAlYEjdBG53TxaXONtWTJ5DQH-BKRp7Aew"  # <- embedded per your request
+GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY", "")
+if not GOOGLE_API_KEY:
+    print("ERROR: GEMINI_API_KEY environment variable not set")
+    print("Set it with: set GEMINI_API_KEY=your_api_key_here")
+    exit(1)
+
 HARDCODED_MODEL_NAME = "models/gemini-2.5-flash"
 OVERLAY_DURATION_MS = 2500
 COOLDOWN = 1.2  # seconds
