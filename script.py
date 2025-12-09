@@ -7,6 +7,26 @@ import threading
 import os
 from win10toast import ToastNotifier
 
+
+def load_env(path: str = ".env"):
+    """Simple .env loader (key=value) without extra dependency."""
+    if not os.path.exists(path):
+        return
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            for line in f:
+                if not line or line.lstrip().startswith("#") or "=" not in line:
+                    continue
+                key, val = line.strip().split("=", 1)
+                if key and key not in os.environ:
+                    os.environ[key] = val
+    except Exception as e:
+        print(f"WARNING: Failed to load {path}: {e}")
+
+
+# Load .env before reading the key
+load_env()
+
 API_KEY = os.getenv("GEMINI_API_KEY", "")
 if not API_KEY:
     print("ERROR: GEMINI_API_KEY environment variable not set")

@@ -20,6 +20,24 @@ try:
 except Exception:
     OCR_AVAILABLE = False
 
+# ----------------- .env loader -----------------
+def load_env(path: str = ".env"):
+    if not os.path.exists(path):
+        return
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            for line in f:
+                if not line or line.lstrip().startswith("#") or "=" not in line:
+                    continue
+                key, val = line.strip().split("=", 1)
+                if key and key not in os.environ:
+                    os.environ[key] = val
+    except Exception:
+        print("[WARN] Failed to load .env; continuing with existing environment")
+
+
+load_env()
+
 # ----------------- USER CONFIG -----------------
 GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY", "")
 if not GOOGLE_API_KEY:
