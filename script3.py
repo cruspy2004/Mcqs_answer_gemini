@@ -213,7 +213,7 @@ def exit_program():
     os._exit(0)
 
 def main():
-    print("🚀 Press 'A' + 'S' together to capture screen and query Gemini.")
+    print(" Press 'A' + 'S' together ")
     print("❎ Press 'Alt + 4' to exit the program.")
     print("[INFO] If hotkeys don't respond on Windows, run PowerShell as Administrator.")
     keyboard.add_hotkey("a+s", lambda: threading.Thread(target=worker, daemon=True).start())
