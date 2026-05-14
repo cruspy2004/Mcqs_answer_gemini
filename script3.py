@@ -21,8 +21,8 @@ except Exception:
     OCR_AVAILABLE = False
 
 # ----------------- USER CONFIG -----------------
-GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  # <- embedded per your request
 #GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  # <- embedded per your request
+GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  # <- embedded per your request
 HARDCODED_MODEL_NAME = "models/gemini-2.5-flash"
 OVERLAY_DURATION_MS = 2500
 COOLDOWN = 1.2  # seconds
